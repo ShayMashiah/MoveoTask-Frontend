@@ -19,6 +19,8 @@ const CodeBlock = () => {
   const [role, setRole] = useState(null);
   const [assignment, setAssignment] = useState('');  
   const [solution, setSolution] = useState(''); 
+  const [title, setTitle] = useState(''); 
+
   const [isCorrect, setIsCorrect] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const alertShownRef = useRef(false);
@@ -79,10 +81,12 @@ const CodeBlock = () => {
 
   // UseEffect to fetch assignment and solution
   useEffect(() => {
-    axiosInstance.get(`code/${index}`)
+    axiosInstance.get(`/code/${index}`)
       .then(response => {
         setAssignment(response.data.assignment);
         setSolution(response.data.solution); 
+        setTitle(response.data.title);
+        
       })
       .catch(error => {
         console.error('Error fetching assignment:', error);
@@ -103,7 +107,7 @@ const CodeBlock = () => {
 
   return (
     <div className="code-block">
-      <h1>Code Block {index}</h1>
+      <h1>{title}</h1>
       <h2>Role: {role || 'Connecting...'}</h2>
       <h3>Assignment:</h3>
       <p>{assignment}</p>
@@ -121,3 +125,4 @@ const CodeBlock = () => {
 };
 
 export default CodeBlock;
+
