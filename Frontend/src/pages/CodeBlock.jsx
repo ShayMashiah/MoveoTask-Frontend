@@ -7,7 +7,7 @@ import { javascript } from "@codemirror/lang-javascript";
 import axiosInstance from "../services/axiosConfig";
 
 // Socket connection
-const socket = io("http://localhost:5000", {
+const socket = io(import.meta.env.REACT_APP_API_URL, {
   withCredentials: true,
   transports: ['polling', 'websocket']
 });
