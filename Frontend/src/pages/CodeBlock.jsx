@@ -7,7 +7,7 @@ import { javascript } from "@codemirror/lang-javascript";
 import axiosInstance from "../services/axiosConfig";
 
 // Socket connection
-export const socket = io(import.meta.env.VITE_API_URL, {
+const socket = io(import.meta.env.VITE_API_URL, {
   withCredentials: true,
   transports: ['polling', 'websocket']
 });
